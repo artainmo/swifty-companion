@@ -12,4 +12,3 @@ The app can also via Xcode be downloaded and [run on personal phone](https://www
 
 # Documentation
 [artainmo - notes on swift](https://github.com/artainmo/WebDevelopment/blob/main/mobile/swift/README.md)<br>
-# swifty-companion
