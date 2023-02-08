@@ -6,6 +6,10 @@ In this project we have to create a **mobile app** using the [42 API](https://ap
 I use the IOS language **Swift** in Xcode using **storyboards** for frontend.
 
 # Run
+Install dependencies first.
+```
+pod install
+```
 Open project with Xcode and run simulator.
 
 The app can also via Xcode be downloaded and [run on personal phone](https://www.youtube.com/watch?v=Fo1A36RsoCI).
