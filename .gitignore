@@ -1,3 +1,3 @@
 *.lock
-swifty-companion/Pods
+swifty-companion/Pods/*
 swifty-companion/swifty-companion/backend/API42
