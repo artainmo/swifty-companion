@@ -60,13 +60,14 @@ class API42Class {
             print("token does not exist yet")
             generate_token()
         }
-        let unixtime = date.timeIntervalSince1970
+        let unixtime = date.timeIntervalSince1970 as Double
         let creationTime = (token?["created_at"] as! Double)
         let lifeTimeWithMargin = ((token?["expires_in"] as! Double) + 100)
         //print(unixtime)
         //print(creationTime)
+        //print((unixtime - creationTime))
         //print(lifeTimeWithMargin)
-        if ((unixtime - creationTime) > lifeTimeWithMargin) {
+        if ((unixtime - creationTime) < lifeTimeWithMargin) {
             print("token expired regenerate")
             generate_token()
             return
@@ -74,7 +75,7 @@ class API42Class {
         print("token not expired")
     }
     
-    func call(_ route: String) -> JSON? {
+    func http_get(_ route: String) -> JSON? {
         recreate_token_if_expired()
         var result: JSON? = nil
         let url = URL(string: "https://api.intra.42.fr" + route)!

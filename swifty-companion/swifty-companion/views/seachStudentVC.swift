@@ -11,7 +11,8 @@ class seachStudentVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(API42.call("/v2/campus")?[0]["active"] ?? "nil")
+        print(searchStudent(searchInput: "artainmo"))
+        print(searchStudent(searchInput: "ffwfw"))
         // Do any additional setup after loading the view.
     }
     
