@@ -15,7 +15,9 @@ class studentPageVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    }
+    
+    func print_all() {
         print(student["login"])
         print(student["usual_full_name"])
         print(student["cursus_users"][cursus.index]["level"])
@@ -44,7 +46,6 @@ class studentPageVC: UIViewController {
             print(skill["name"])
             print(skill["level"])
         }
-        
     }
 
 }
