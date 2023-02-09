@@ -63,10 +63,14 @@ class API42Class {
         let unixtime = date.timeIntervalSince1970 as Double
         let creationTime = (token?["created_at"] as! Double)
         let lifeTimeWithMargin = ((token?["expires_in"] as! Double) + 100)
-        //print(unixtime)
-        //print(creationTime)
-        //print((unixtime - creationTime))
-        //print(lifeTimeWithMargin)
+        print("Token creation time")
+        print(creationTime)
+        print("Now")
+        print(unixtime)
+        print("Now minus creationTime")
+        print((unixtime - creationTime))
+        print("Token total life time")
+        print(lifeTimeWithMargin)
         if ((unixtime - creationTime) > lifeTimeWithMargin) {
             print("token expired regenerate")
             generate_token()
