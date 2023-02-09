@@ -7,24 +7,32 @@
 
 import UIKit
 
-class seachStudentVC: UIViewController {
+class seachStudentVC: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet var fieldSearchStudent: UITextField!
+    @IBOutlet var errorLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(searchStudent(searchInput: "artainmo"))
-        print(searchStudent(searchInput: "ffwfw"))
-        // Do any additional setup after loading the view.
+        errorLabel.isHidden = true
+        fieldSearchStudent.delegate = self
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func viewStudent() {
+        let login: String = fieldSearchStudent.text ?? ""
+            
+        if let student = searchStudent(searchInput: login) {
+            errorLabel.isHidden = true
+            let vc = storyboard?.instantiateViewController(identifier: "page")
+                        as! studentPageVC
+            vc.student = student
+            navigationController?.pushViewController(vc, animated: true)
+        } else {
+            errorLabel.isHidden = false
+        }
     }
-    */
+    
+    
+    
 
 }

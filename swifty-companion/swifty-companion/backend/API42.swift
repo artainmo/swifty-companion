@@ -67,7 +67,7 @@ class API42Class {
         //print(creationTime)
         //print((unixtime - creationTime))
         //print(lifeTimeWithMargin)
-        if ((unixtime - creationTime) < lifeTimeWithMargin) {
+        if ((unixtime - creationTime) > lifeTimeWithMargin) {
             print("token expired regenerate")
             generate_token()
             return
