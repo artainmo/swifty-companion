@@ -24,14 +24,20 @@ func containsSpecialCharacters(searchTerm: String) -> Bool {
 
 func searchStudent(searchInput: String) -> JSON? {
     if searchInput.containsWhitespaceAndNewlines() ||
-                containsSpecialCharacters(searchTerm: searchInput) {
+                containsSpecialCharacters(searchTerm: searchInput) ||
+                searchInput.count == 0 {
         return nil
     }
-    if let user = API42.http_get("/v2/users/\(searchInput)") {
+    if var user = API42.http_get("/v2/users/\(searchInput)") {
         if user.isEmpty {
             return nil
         }
-        return user
+        if let events = API42.http_get("/v2/users/\(searchInput)/events") {
+            user["events"] = events
+            return user
+        } else {
+            return nil
+        }
     } else {
         return nil
     }
