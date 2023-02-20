@@ -72,11 +72,13 @@ class studentPageVC: UIViewController {
             print("")
             print(project["project"]["slug"])
             print(project["final_mark"])
+            print(project)
         }
         print("Projects in progress")
         for (_,project) in student["current_projects"] {
             print("")
             print(project["project"]["name"])
+            print(project)
         }
         print("Skills")
         for (_,skill) in student["cursus_users"][cursus.index]["skills"] {
@@ -155,7 +157,9 @@ class studentPageVC: UIViewController {
     private func filterCurrentProjects() {
         var current_projects = [JSON]()
         for (_,var project) in student["projects_users"]
-                where project["final_mark"].stringValue == "" &&
+                where ((project["final_mark"].stringValue == ""
+                && project["status"] != "creating_group") ||
+                project["status"] == "in_progress") &&
                 project["cursus_ids"][0].intValue == cursus.id {
             if filter_project_name(&project, false) {
                 current_projects.append(project)
@@ -206,10 +210,17 @@ extension studentPageVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch tableView {
         case pastProjectsTableView:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "past_project_cell")!
+            let cell = tableView.dequeueReusableCell(withIdentifier: "past_project_cell") as! customCell
             let project = student["past_projects"][indexPath.row]
-            cell.textLabel?.text = project["project"]["slug"].stringValue + " " +
-                        project["final_mark"].stringValue
+            cell.titleLabel.text =
+                project["project"]["slug"].stringValue
+            cell.scoreLabel.text =
+                project["final_mark"].stringValue
+            if project["validated?"].rawValue as! Bool {
+                cell.scoreLabel.textColor = UIColor.green
+            } else {
+                cell.scoreLabel.textColor = UIColor.red
+            }
             return cell
         case currentProjectsTableView:
             let cell = tableView.dequeueReusableCell(withIdentifier: "current_project_cell")!
@@ -217,16 +228,18 @@ extension studentPageVC: UITableViewDelegate, UITableViewDataSource {
             cell.textLabel?.text = project["project"]["slug"].stringValue
             return cell
         case skillsTableView:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "skill_cell")!
+            let cell = tableView.dequeueReusableCell(withIdentifier: "skill_cell") as! customCell
             let skill = student["cursus_users"][cursus.index]["skills"][indexPath.row]
-            cell.textLabel?.text = skill["name"].stringValue + " " + skill["level"].stringValue
+            cell.titleLabel.text = skill["name"].stringValue
+            cell.scoreLabel.text = skill["level"].stringValue
             return cell
         case eventsTableView:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "event_cell")!
+            let cell = tableView.dequeueReusableCell(withIdentifier: "event_cell") as! customCell
             let event = student["events"][indexPath.row]
             var eventDate: String = event["begin_at"].stringValue
             eventDate = String(eventDate.prefix(10))
-            cell.textLabel?.text = event["name"].stringValue + " " + eventDate
+            cell.titleLabel.text = event["name"].stringValue
+            cell.scoreLabel.text = eventDate
             return cell
         default:
             return UITableViewCell()
