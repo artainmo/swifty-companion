@@ -22,6 +22,8 @@ class studentPageVC: UIViewController {
     @IBOutlet var correctionPointsLabel: UILabel!
     @IBOutlet var walletLabel: UILabel!
     
+    @IBOutlet var cursusSC: UISegmentedControl!
+    
     @IBOutlet var pastProjectsTableView: UITableView!
     @IBOutlet var currentProjectsTableView: UITableView!
     @IBOutlet var skillsTableView: UITableView!
@@ -31,8 +33,10 @@ class studentPageVC: UIViewController {
         filterPastProjects()
         filterCurrentProjects()
         print_all()
+        
         super.viewDidLoad()
         fetchImage(url: student["image"]["versions"]["small"].stringValue)
+        
         loginLabel.text = "Login: " + student["login"].stringValue
         nameLabel.text = "Name: " + student["usual_full_name"].stringValue
         levelLabel.text = "Level: " +
@@ -41,6 +45,10 @@ class studentPageVC: UIViewController {
         correctionPointsLabel.text = "Evaluation points: " +
             student["correction_point"].stringValue
         walletLabel.text = "Wallets: " + student["wallet"].stringValue
+        
+        cursusSC.setTitle("42cursus", forSegmentAt: 0)
+        cursusSC.setTitle("C Piscine", forSegmentAt: 1)
+        
         pastProjectsTableView.delegate = self
         pastProjectsTableView.dataSource = self
         currentProjectsTableView.delegate = self
@@ -86,8 +94,8 @@ class studentPageVC: UIViewController {
         }
     }
     
-    @IBAction func changeCursus() {
-        if cursus.index == 1 {
+    @IBAction func changeCursus(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 1 {
             cursus.index = 0
             cursus.id = 9
         } else {
@@ -96,22 +104,50 @@ class studentPageVC: UIViewController {
         }
     }
     
+    private func filter_project_name(_ project: inout JSON,
+                                     _ past_project: Bool) -> Bool {
+        let pn = project["project"]["slug"].stringValue
+        if pn.contains("42cursus-") {
+            project["project"]["slug"] = JSON(pn[9...])
+        }
+        if pn.contains("internship-i-internship-i") {
+            if pn.count > 24 && past_project {
+                return false
+            }
+            project["project"]["slug"] = JSON(pn[13...])
+        }
+        if pn.contains("internship-ii-internship-ii") {
+            if pn.count > 26 && past_project {
+                return false
+            }
+            project["project"]["slug"] = JSON(pn[14...])
+        }
+        if (pn.contains("-day-") || pn.contains("-rush-")) && past_project {
+            return false
+        }
+        return true
+    }
+    
     private func filterPastProjects() {
         var past_projects = [JSON]()
-        for (_,project) in student["projects_users"]
+        for (_,var project) in student["projects_users"]
                 where project["final_mark"].stringValue != "" &&
                 project["cursus_ids"][0].intValue == cursus.id {
-            past_projects.append(project)
+            if filter_project_name(&project, true) {
+                past_projects.append(project)
+            }
         }
         student["past_projects"] = JSON(past_projects)
     }
     
     private func filterCurrentProjects() {
         var current_projects = [JSON]()
-        for (_,project) in student["projects_users"]
+        for (_,var project) in student["projects_users"]
                 where project["final_mark"].stringValue == "" &&
                 project["cursus_ids"][0].intValue == cursus.id {
-            current_projects.append(project)
+            if filter_project_name(&project, false) {
+                current_projects.append(project)
+            }
         }
         student["current_projects"] = JSON(current_projects)
     }
@@ -166,7 +202,7 @@ extension studentPageVC: UITableViewDelegate, UITableViewDataSource {
         case currentProjectsTableView:
             let cell = tableView.dequeueReusableCell(withIdentifier: "current_project_cell")!
             let project = student["current_projects"][indexPath.row]
-            cell.textLabel?.text = project["project"]["name"].stringValue
+            cell.textLabel?.text = project["project"]["slug"].stringValue
             return cell
         case skillsTableView:
             let cell = tableView.dequeueReusableCell(withIdentifier: "skill_cell")!

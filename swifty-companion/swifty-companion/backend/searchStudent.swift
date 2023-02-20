@@ -8,14 +8,8 @@
 import Foundation
 import SwiftyJSON
 
-extension String {
-    func containsWhitespaceAndNewlines() -> Bool {
-        return rangeOfCharacter(from: .whitespacesAndNewlines) != nil
-    }
-}
-
 func containsSpecialCharacters(searchTerm: String) -> Bool {
-    let characterset = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")
+    let characterset = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-")
     if searchTerm.rangeOfCharacter(from: characterset.inverted) != nil {
         return true
     }

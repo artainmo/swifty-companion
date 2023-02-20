@@ -16,6 +16,7 @@
 		22A72B982994198200355519 /* seachStudentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A72B972994198200355519 /* seachStudentVC.swift */; };
 		22A72B9A299422E600355519 /* searchStudent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A72B99299422E600355519 /* searchStudent.swift */; };
 		22D7D00D2995764000D8A674 /* studentPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D7D00C2995764000D8A674 /* studentPageVC.swift */; };
+		22E2E19A29A3BF9E00E3BEA4 /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E2E19929A3BF9E00E3BEA4 /* utils.swift */; };
 		86D9AC899C5B8B0C9DE7A6DC /* Pods_swifty_companion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 290F3836886C10C57CD9C1F9 /* Pods_swifty_companion.framework */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,7 @@
 		22A72B972994198200355519 /* seachStudentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = seachStudentVC.swift; sourceTree = "<group>"; };
 		22A72B99299422E600355519 /* searchStudent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = searchStudent.swift; sourceTree = "<group>"; };
 		22D7D00C2995764000D8A674 /* studentPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = studentPageVC.swift; sourceTree = "<group>"; };
+		22E2E19929A3BF9E00E3BEA4 /* utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
 		290F3836886C10C57CD9C1F9 /* Pods_swifty_companion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_swifty_companion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FA01136827B359C604591F4 /* Pods-swifty-companion.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swifty-companion.release.xcconfig"; path = "Target Support Files/Pods-swifty-companion/Pods-swifty-companion.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -86,6 +88,7 @@
 			children = (
 				22A72B942993D21F00355519 /* API42.swift */,
 				22A72B99299422E600355519 /* searchStudent.swift */,
+				22E2E19929A3BF9E00E3BEA4 /* utils.swift */,
 			);
 			path = backend;
 			sourceTree = "<group>";
@@ -232,6 +235,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22A72B802993D1AE00355519 /* AppDelegate.swift in Sources */,
+				22E2E19A29A3BF9E00E3BEA4 /* utils.swift in Sources */,
 				22A72B9A299422E600355519 /* searchStudent.swift in Sources */,
 				22A72B952993D21F00355519 /* API42.swift in Sources */,
 				22A72B822993D1AE00355519 /* SceneDelegate.swift in Sources */,
