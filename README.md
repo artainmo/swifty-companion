@@ -10,9 +10,9 @@ Install dependencies first.
 ```
 pod install
 ```
-Open project with Xcode and run simulator.
+Open project with Xcode on mac and run simulator.
 
-The app can also via Xcode be downloaded and [run on personal phone](https://www.youtube.com/watch?v=Fo1A36RsoCI).
+The app can also via Xcode be downloaded and [run on personal iphone](https://www.youtube.com/watch?v=Fo1A36RsoCI).
 
 # Documentation
 [artainmo - notes on swift](https://github.com/artainmo/WebDevelopment/blob/main/mobile/swift/README.md)<br>
