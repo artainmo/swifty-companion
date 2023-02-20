@@ -12,8 +12,21 @@ class API42Class {
     var token: [String: Any]? = nil
     
     func generate_token() {
-        let UID = "u-s4t2ud-c3ba1c99b2d4dbd9d7b2b1b4f98d08db7efa34343f91cd069719b00af472ae5d"
-        let secret = "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"
+        var UID: String = ""
+        var secret: String = ""
+        
+        if let _UID = ProcessInfo.processInfo.environment["API_UID"] {
+            UID = String(_UID)
+        } else {
+            print("Missing environment variable: API_UID")
+            exit(0)
+        }
+        if let _secret = ProcessInfo.processInfo.environment["API_SECRET"] {
+            secret = String(_secret)
+        } else {
+            print("Missing environment variable: API_SECRET")
+            exit(0)
+        }
         
         let queryParams = "?"
             + "grant_type=client_credentials&"

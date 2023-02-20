@@ -158,7 +158,8 @@ class studentPageVC: UIViewController {
         var current_projects = [JSON]()
         for (_,var project) in student["projects_users"]
                 where ((project["final_mark"].stringValue == ""
-                && project["status"] != "creating_group") ||
+                && project["status"] != "creating_group" &&
+                project["status"] != "searching_a_group") ||
                 project["status"] == "in_progress") &&
                 project["cursus_ids"][0].intValue == cursus.id {
             if filter_project_name(&project, false) {
