@@ -1,3 +1,6 @@
 *.lock
 swifty-companion/Pods/*
 swifty-companion/swifty-companion/backend/API42
+
+# environment variables - secret API keys
+swifty-companion/swifty-companion.xcodeproj/xcshareddata/xcschemes/swifty-companion.xcscheme
