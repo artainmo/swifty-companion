@@ -24,4 +24,5 @@ The app can also via Xcode be downloaded and be [run on personal iphone](https:/
 
 # Documentation
 [artainmo - notes on swift](https://github.com/artainmo/WebDevelopment/blob/main/mobile/swift/README.md)<br>
-[Easiest UIScrollView EVER 2022 (Xcode 13.3 & Swift 5.6)](https://www.youtube.com/watch?v=WLwQE3f2ZYg)
+[Easiest UIScrollView EVER 2022 (Xcode 13.3 & Swift 5.6)](https://www.youtube.com/watch?v=WLwQE3f2ZYg)<br>
+[Swift: TableView w/ Custom Cells Tutorial (2021, iOS) - 2021](https://www.youtube.com/watch?v=R2Ng8Vj2yhY)
