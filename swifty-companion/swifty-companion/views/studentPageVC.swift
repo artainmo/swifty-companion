@@ -40,7 +40,7 @@ class studentPageVC: UIViewController {
         loginLabel.text = "Login: " + student["login"].stringValue
         nameLabel.text = "Name: " + student["usual_full_name"].stringValue
         levelLabel.text = "Level: " +
-            student["cursus_users"][cursus.index]["level"].stringValue
+            student["cursus_users"][cursus.index]["level"].stringValue[0..<4]
         emailLabel.text = "Email: " + student["email"].stringValue
         correctionPointsLabel.text = "Evaluation points: " +
             student["correction_point"].stringValue
@@ -102,6 +102,18 @@ class studentPageVC: UIViewController {
             cursus.index = 1
             cursus.id = 21
         }
+        updatePage()
+    }
+    
+    func updatePage() {
+        filterPastProjects()
+        filterCurrentProjects()
+        levelLabel.text = "Level: " +
+            student["cursus_users"][cursus.index]["level"].stringValue[0..<4]
+        pastProjectsTableView.reloadData()
+        currentProjectsTableView.reloadData()
+        skillsTableView.reloadData()
+        eventsTableView.reloadData()
     }
     
     private func filter_project_name(_ project: inout JSON,
