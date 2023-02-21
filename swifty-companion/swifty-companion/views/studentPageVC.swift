@@ -32,7 +32,7 @@ class studentPageVC: UIViewController {
     override func viewDidLoad() {
         filterPastProjects()
         filterCurrentProjects()
-        print_all()
+        //print_all()
         
         super.viewDidLoad()
         fetchImage(url: student["image"]["versions"]["small"].stringValue)
