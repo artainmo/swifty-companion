@@ -1,5 +1,5 @@
 # swifty-companion
-42 school [subject](https://cdn.intra.42.fr/pdf/pdf/66599/en.subject.pdf)
+42 school [subject](https://cdn.intra.42.fr/pdf/pdf/66599/en.subject.pdf).
 
 In this project we have to create a **mobile app** using the [42 API](https://api.intra.42.fr/apidoc) to enable search of student names and display of their informations.
 
