@@ -51,6 +51,12 @@ class API42Class {
                         with: datas, options: .mutableContainers)
                         as? [String: Any] {
                             self.token = json
+                            if let error = self.token?["error_description"] {
+                                print("TOKEN ERROR: ")
+                                print(error)
+                                print("Maybe you should recreate new 42API app (https://profile.intra.42.fr/oauth/applications/new)")
+                                exit(0)
+                            }
                             print("token generated")
                          }
                 } catch let error {
@@ -69,13 +75,14 @@ class API42Class {
     func recreate_token_if_expired() {
         let date = NSDate() // current date
         
-        if token == nil {
+        if self.token == nil {
             print("token does not exist yet")
             generate_token()
+            return
         }
         let unixtime = date.timeIntervalSince1970 as Double
-        let creationTime = (token?["created_at"] as! Double)
-        let lifeTimeWithMargin = ((token?["expires_in"] as! Double) + 100)
+        let creationTime = (self.token?["created_at"] as! Double)
+        let lifeTimeWithMargin = ((self.token?["expires_in"] as! Double) + 100)
         print("Token creation time")
         print(creationTime)
         print("Now")
@@ -97,7 +104,7 @@ class API42Class {
         var result: JSON? = nil
         let url = URL(string: "https://api.intra.42.fr" + route)!
         var httpRequest = URLRequest(url: url)
-        httpRequest.addValue("Bearer \(token?["access_token"] as! String)",
+        httpRequest.addValue("Bearer \(self.token?["access_token"] as! String)",
                              forHTTPHeaderField: "Authorization")
     
         let semaphore = DispatchSemaphore(value: 0)
