@@ -55,6 +55,7 @@ class API42Class {
                                 print("TOKEN ERROR: ")
                                 print(error)
                                 print("Maybe you should recreate new 42API app (https://profile.intra.42.fr/oauth/applications/new)")
+                                print("Or maybe you should regenerate secret of existing app (https://profile.intra.42.fr/oauth/applications/12855)")
                                 exit(0)
                             }
                             print("token generated")
